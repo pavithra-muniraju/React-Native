@@ -5,19 +5,33 @@ import { LinearGradient } from 'expo-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
 import colors from './utilities/colors';
+import GameOverScreen from './screens/GameOverScreen';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
+  const [gameOver, setGameOver] = useState(true);
 
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);
+    setGameOver(false);
   }
 
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
-  if (userNumber) {
-    screen = <GameScreen userNumber={userNumber} />;
+    function gameOverHandler() {
+    setGameOver(true);
   }
+
+
+  if (userNumber) {
+    screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler}/>;
+  }
+
+
+  if (gameOver && userNumber) {
+    screen = <GameOverScreen  />;
+  }
+
 
   return (
     <LinearGradient colors={['#4e0329', colors.secondary]} style={styles.rootScreen}>
@@ -28,11 +42,11 @@ export default function App() {
         imageStyle={styles.backgroundImage}
       >
         <SafeAreaView style={styles.rootScreen}>
- {screen}
+          {screen}
         </SafeAreaView>
-       
+
       </ImageBackground>
-      
+
     </LinearGradient>
   );
 }
