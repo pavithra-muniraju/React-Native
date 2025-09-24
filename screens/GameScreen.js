@@ -3,6 +3,9 @@ import Title from '../components/ui/Title';
 import { useEffect, useState } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import { Ionicons } from '@expo/vector-icons'
+import Card from '../components/ui/Card';
+import Instructions from '../components/ui/Instructions';
 
 function GenerateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -56,14 +59,18 @@ function GameScreen({ userNumber, onGameOver }) {
     return <View style={styles.screen}>
         <Title >Oponents Guess</Title>
         <NumberContainer>{initialGuess} </NumberContainer>
-        <View>
-            <Text>Higher / Lower</Text>
+        <View style={styles.inputContainer}>
+            <Instructions>Higher / Lower</Instructions>
             <View style={styles.buttonsContainer}>
                 <View style={styles.buttonContainer}>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
+                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                        <Ionicons name='remove' size={24} color='white' />
+                    </PrimaryButton>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'upper')}>+</PrimaryButton>
+                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'upper')}>
+                        <Ionicons name='add' size={24} color='white' />
+                    </PrimaryButton>
                 </View>
             </View>
         </View>
@@ -85,5 +92,19 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+   inputContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 100,
+    marginHorizontal: 24,
+    padding: 16,
+    backgroundColor: '#3b021f',
+    borderRadius: 8,
+    elevation: 4,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    shadowOpacity: 0.25,
   },
 });

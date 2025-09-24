@@ -3,6 +3,7 @@ import { TextInput, View, StyleSheet, Alert, Text } from 'react-native';
 
 import PrimaryButton from '../components/ui/PrimaryButton';
 import colors from '../utilities/colors';
+import Instructions from '../components/ui/Instructions';
 
 function StartGameScreen({onPickNumber}) {
   const [enteredNumber, setEnteredNumber] = useState('');
@@ -32,7 +33,7 @@ function StartGameScreen({onPickNumber}) {
 
   return (
     <View style={styles.inputContainer}>
-      <Text style={styles.textStyle}> Enter your Number</Text>
+      <Instructions> Enter your Number</Instructions>
       <TextInput
         style={styles.numberInput}
         maxLength={2}
@@ -88,10 +89,5 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
   },
-  textStyle: {
-    color: 'white',
-    padding: 8,
-    fontSize: 20,
-    fontWeight: 'bold'
-  }
+
 });
