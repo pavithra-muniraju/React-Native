@@ -33,7 +33,7 @@ function StartGameScreen({onPickNumber}) {
 
   return (
     <View style={styles.inputContainer}>
-      <Instructions> Enter your Number</Instructions>
+      <Instructions style={styles.instructionText}> Enter your Number</Instructions>
       <TextInput
         style={styles.numberInput}
         maxLength={2}
@@ -89,5 +89,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
   },
-
+instructionText: {
+  marginBottom: 12
+}
 });
