@@ -1,4 +1,4 @@
-import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Title from '../components/ui/Title';
 import { useEffect, useState } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
@@ -22,6 +22,8 @@ let maxBoundary = 100;
 
 function GameScreen({ userNumber, onGameOver }) {
 
+    const { width, height } = useWindowDimensions()
+
     const initialGuess = GenerateRandomBetween(1, 100, userNumber);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
     const [guessRounds, setGuessRounds] = useState([initialGuess])
@@ -36,7 +38,7 @@ function GameScreen({ userNumber, onGameOver }) {
     useEffect(() => {
         minBoundary = 1;
         maxBoundary = 100;
-    },[]);
+    }, []);
 
     function nextGuessHandler(direction) {
         if (
@@ -64,9 +66,9 @@ function GameScreen({ userNumber, onGameOver }) {
     }
 
     const guessRoundsNumberLength = guessRounds.length;
-    return <View style={styles.screen}>
-        <Title >Oponents Guess</Title>
-        <NumberContainer>{initialGuess} </NumberContainer>
+
+    let content = <>
+        <NumberContainer>{currentGuess} </NumberContainer>
         <View style={styles.inputContainer}>
             <Instructions style={styles.instructionText}>Higher / Lower</Instructions>
             <View style={styles.buttonsContainer}>
@@ -84,14 +86,40 @@ function GameScreen({ userNumber, onGameOver }) {
         </View>
         <View style={styles.listContainer}>
             <FlatList data={guessRounds} renderItem={(itemData) => {
-              return  <GuessLogItem roundNumber={guessRoundsNumberLength - itemData.index} guess={itemData.item}/>
-            }} keyExtractor={(item) => item}  />
-            
-            
-           {/* {guessRounds.map((guessNum) => 
+                return <GuessLogItem roundNumber={guessRoundsNumberLength - itemData.index} guess={itemData.item} />
+            }} keyExtractor={(item) => item} />
+
+
+            {/* {guessRounds.map((guessNum) => 
             <Text key={guessNum}>{guessNum}</Text>
            )} */}
+        </View></>
+
+    if (width > 500) {
+        content = <>
+           
+            <Instructions style={styles.instructionText}>Higher / Lower</Instructions>
+            <>
+        <View style={styles.buttonsContainerWide}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
+              <Ionicons name='remove' size={24} color='white' />
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
+              <Ionicons name='add' size={24} color='white' />
+            </PrimaryButton>
+          </View>
         </View>
+      </>
+        </>
+    }
+    return         <View style={styles.screen}>
+        <Title >Oponents Guess</Title>
+
+        {content}
     </View>
 }
 
@@ -101,32 +129,39 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 24,
+        alignItems: 'center'
     },
-      buttonsContainer: {
-    flexDirection: 'row',
-  },
-  buttonContainer: {
-    flex: 1,
-  },
-   inputContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 100,
-    marginHorizontal: 24,
-    padding: 16,
-    backgroundColor: '#3b021f',
-    borderRadius: 8,
-    elevation: 4,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    shadowOpacity: 0.25,
-  },
-  listContainer: {
-    flex: 1,
-    padding: 24
-  },
-  instructionText: {
-    marginBottom: 12
-  }
+    buttonsContainer: {
+        flexDirection: 'row',
+    },
+    buttonContainer: {
+        flex: 1,
+    },
+    inputContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 100,
+        marginHorizontal: 24,
+        padding: 16,
+        backgroundColor: '#3b021f',
+        borderRadius: 8,
+        elevation: 4,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 6,
+        shadowOpacity: 0.25,
+    },
+    listContainer: {
+        flex: 1,
+        padding: 24
+    },
+    instructionText: {
+        marginBottom: 12
+    },
+    buttonsContainerWide: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems:'center'
+    }
 });

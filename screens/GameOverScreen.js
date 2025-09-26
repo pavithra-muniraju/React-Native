@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import Title from "../components/ui/Title";
 import colors from "../utilities/colors";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -12,7 +12,7 @@ function GameOverScreen({roundNumber, userNumber, onStartNewGame}) {
                 <Image source={require('../assets/images/success.png')} style={styles.imageStyles}></Image>
 
             </View>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 3 }}>
                 <Text style={styles.summaryText}>Your phone needed
                     <Text style={styles.highledtedText}> {roundNumber}</Text> Rounds to guess  number
                     <Text style={styles.highledtedText}> {userNumber} </Text>
@@ -25,7 +25,7 @@ function GameOverScreen({roundNumber, userNumber, onStartNewGame}) {
 }
 
 export default GameOverScreen;
-
+const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
@@ -33,10 +33,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     screen: {
-        // flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        padding: 24
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     gameOverText: {
         fontSize: 24,
@@ -44,19 +43,21 @@ const styles = StyleSheet.create({
         color: 'yellow',
     },
     imageStyles: {
-        height: 400,
-        width: 400,
-        borderRadius: 200,
+        height: deviceWidth < 300 ? 150: 200,
+        width: deviceWidth < 300 ? 150: 200,
+        borderRadius: deviceWidth < 300 ? 75: 150,
         borderWidth: 3,
         borderColor: colors.primary,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     summaryText: {
         fontFamily: 'open-sans',
         color: 'white',
         textAlign: 'center',
-        marginVertical: 24,
-        fontSize: 24
+        marginVertical: 4,
+        fontSize: 24,
     },
     highledtedText: {
         fontFamily: 'open-sans-bold',
