@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     padding: 8,
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'open-sans',
+    // fontFamily: 'open-sans',
   }
 });
 

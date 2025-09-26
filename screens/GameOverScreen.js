@@ -53,14 +53,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     summaryText: {
-        fontFamily: 'open-sans',
+        // fontFamily: 'open-sans',
         color: 'white',
         textAlign: 'center',
         marginVertical: 4,
         fontSize: 24,
     },
     highledtedText: {
-        fontFamily: 'open-sans-bold',
+        // fontFamily: 'open-sans-bold',
         color: colors.primary
     }
 });

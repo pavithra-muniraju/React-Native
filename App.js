@@ -13,14 +13,12 @@ export default function App() {
   const [gameOver, setGameOver] = useState(true);
   const [guessRounds, setGuessRounds] = useState(0);
 
-  const [fontsLoaded] = useFonts({
-    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-  })
+  // const [fontsLoaded] = useFonts({
+  //   'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+  //   'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  // })
 
-  if(!fontsLoaded) {
-    return <AppLoading />
-  }
+  
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);
     setGameOver(false);
