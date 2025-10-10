@@ -1,6 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import { Pressable, View, Text, StyleSheet, Platform } from 'react-native';
 
 function CategoryGridTile({ title, color, onPress }) {
+ // const navigation = useNavigation(); // alternative for navigation when it is neted
   return (
     <View style={styles.gridItem}>
       <Pressable
