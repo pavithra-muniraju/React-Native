@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDataScreen from './screens/MealDataScreen';
-
+// https://github.com/academind/react-native-practical-guide-code ---> full guide
 const Stack = createNativeStackNavigator();
 
 export default function App() {
