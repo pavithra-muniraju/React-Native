@@ -8,6 +8,7 @@ import Header from './components/Header';
 import { AppLoading} from 'expo';
 import { StatusBar } from 'expo-status-bar';
 import Footer from './components/Footer';
+import NewsDeatils from './screens/NewsDetails';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name='Home' component={HomePage} options={{header: () => <Header headerDisplay="Gobo-app" />}} />
+        <Stack.Screen name="NewsDetails" component={NewsDeatils} />
       </Stack.Navigator>
       <Footer />
     </NavigationContainer>

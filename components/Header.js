@@ -13,7 +13,8 @@ export default Header;
 const styles = StyleSheet.create({
 image: {
     height: 50,
-    width: 50
+    width: 60,
+    marginTop: 6
 },
 header: {
     width: '100%',
