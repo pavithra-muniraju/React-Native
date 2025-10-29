@@ -12,6 +12,8 @@ import NewsDeatils from './screens/NewsDetails';
 import AboutPage from './screens/AboutPage';
 import { navigationRef } from './Navigation/Rootnavigtion';
 import QuotePage from './screens/QuotePage';
+import CatalogPage from './screens/CatalogPage';
+import CatalogDetail from './screens/CatalogDetailPage';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -34,6 +36,8 @@ export default function App() {
         {/* <Stack.Screen name="About" component={AboutPage} /> */}
         <Stack.Screen name='About' component={AboutPage} options={{header: () => <Header headerDisplay="About Golobomantics" />}} />
         <Stack.Screen name='Quote' component={QuotePage} options={{header: () => <Header headerDisplay="Quotation"/>}} />
+        <Stack.Screen name="Catalog" component={CatalogPage} options={{header: () => <Header headerDisplay="Catalog Display"/> }} />
+        <Stack.Screen name="CatalogDetail" component={CatalogDetail} options={{header: () => <Header headerDisplay="Catalog Details"/> }} />
       </Stack.Navigator>
       <Footer />
     </NavigationContainer>

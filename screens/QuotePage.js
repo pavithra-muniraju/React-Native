@@ -1,15 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-function QuotePage() {
+function QuotePage({route}) {
 
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phNo, setPhNo] = useState('');
     const [msg, setMsg] = useState('');
 
     const [error, setError] = useState(false);
-    const [submitted, setSubmitted] = useState(false)
+    const [submitted, setSubmitted] = useState(false);
+
+    const routeparms = route.params;
+
+    useEffect(() => {
+        if(routeparms.model != 'Footer') {
+            const message = routeparms.model + ' model #: ' + routeparms.modelNumber
+            setMsg(message)
+        } else {
+            setMsg('')
+        }
+    },[])
     const postMessage = () => {
        console.log('post');
        if(!name || !email || !phNo || !msg) {
