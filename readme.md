@@ -1,0 +1,1 @@
+please checkout "https://expo.dev/preview/update?message=Testing+update&updateRuntimeVersion=1.0.0&createdAt=2025-10-29T09%3A57%3A45.677Z&slug=exp&projectId=bb17755e-377e-419e-ae47-30ec034de5ca&group=df2e1665-7eea-49eb-9143-cb050b76d12a" to view this app on ur expo gp phone app
