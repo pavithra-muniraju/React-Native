@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
+import { Button, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CategoriesScreen from './screens/CategoriesScreen';
@@ -27,7 +27,14 @@ export default function App() {
               title: catId
             }
           }} />
-          <Stack.Screen name='MealData' component={MealDataScreen}></Stack.Screen>
+          <Stack.Screen name='MealData' component={MealDataScreen} 
+          // options={{
+          //   headerRight: () => {
+          //     // return <Text style={{color:'white'}}>In the header</Text>  
+          //     return <Button title='Add To Fav' />
+          //   }
+          // }} one way of adding header options where there is no screen interaction
+          ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </>

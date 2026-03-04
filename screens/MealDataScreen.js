@@ -1,14 +1,28 @@
-import { Image, ScrollView, StyleSheet } from "react-native";
+import { Button, Image, Pressable, ScrollView, StyleSheet } from "react-native";
 import { Text, View } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import { FlatList } from "react-native-web";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
+import { useLayoutEffect } from "react";
+import IconButton from "../components/IconButton";
 
-function MealDataScreen({ route }) {
+function MealDataScreen({ route, navigation }) {
     const mealId = route.params.mealId;
     const mealData = MEALS.find((meal) => meal.id === mealId);
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => {
+                //    return <Button title="Tap Me" onPress={headerButonPressHandler}/>
+                return <IconButton icon="star" color='white' onPress={headerButonPressHandler} />
+            }
+        })
+    }, [navigation, headerButonPressHandler])
+    function headerButonPressHandler() {
+        console.log('pressed')
+    }
 
     console.log(mealData)
     return <>
@@ -29,11 +43,11 @@ function MealDataScreen({ route }) {
         <ScrollView contentContainerStyle={styles.outerConatiner}>
             <View style={styles.listContainer} >
                 <Subtitle children="Ingredients" />
-                <List data={mealData.ingredients}/>
-              
+                <List data={mealData.ingredients} />
+
 
                 <Subtitle children="Steps" />
-                <List data={mealData.steps}/>
+                <List data={mealData.steps} />
             </View>
         </ScrollView>
 
