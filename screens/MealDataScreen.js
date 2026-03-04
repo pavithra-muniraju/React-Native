@@ -3,6 +3,8 @@ import { Text, View } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import { FlatList } from "react-native-web";
+import Subtitle from "../components/MealDetail/Subtitle";
+import List from "../components/MealDetail/List";
 
 function MealDataScreen({ route }) {
     const mealId = route.params.mealId;
@@ -19,18 +21,19 @@ function MealDataScreen({ route }) {
                 <MealDetails
                     duration={mealData.duration}
                     complexity={mealData.complexity}
-                    affordability={mealData.affordability} />
+                    affordability={mealData.affordability}
+                    textStyle={styles.detailText}
+                    style={styles.title} />
             </View>
         </View>
-        <ScrollView>
-            <View>
-                <Text style={styles.title}>Ingredients</Text>
-                {mealData.ingredients.map((ingredients) =>
-                    <Text key={ingredients} style={styles.step} >{ingredients}</Text>)}
+        <ScrollView contentContainerStyle={styles.outerConatiner}>
+            <View style={styles.listContainer} >
+                <Subtitle children="Ingredients" />
+                <List data={mealData.ingredients}/>
+              
 
-                <Text style={styles.title}>Steps</Text>
-                {mealData.steps.map((step) =>
-                    <Text style={styles.step} key={step}>{step}</Text>)}
+                <Subtitle children="Steps" />
+                <List data={mealData.steps}/>
             </View>
         </ScrollView>
 
@@ -42,7 +45,7 @@ export default MealDataScreen;
 const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 24,
         padding: 8,
         color: 'white'
     },
@@ -52,5 +55,15 @@ const styles = StyleSheet.create({
     },
     step: {
         padding: 8
+    },
+    detailText: {
+        color: 'cyan'
+    },
+    listContainer: {
+        maxWidth: '80%',
+        // alignItems: 'center'
+    },
+    outerConatiner: {
+        alignItems: 'center'
     }
 })
