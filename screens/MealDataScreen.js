@@ -5,26 +5,40 @@ import MealDetails from "../components/MealDetails";
 import { FlatList } from "react-native-web";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import IconButton from "../components/IconButton";
+import { FavouritesContext } from "../store/context/favourite-context";
 
 function MealDataScreen({ route, navigation }) {
+
+    const favMealContext = useContext(FavouritesContext);
+
     const mealId = route.params.mealId;
     const mealData = MEALS.find((meal) => meal.id === mealId);
+
+    const isSelectedMealFav = favMealContext.ids.includes(mealId);
+
+    function changeFavHandler() {
+        if (isSelectedMealFav) {
+            favMealContext.removedFavourite(mealId);
+        } else {
+            favMealContext.addFavourite(mealId)
+        }
+    }
 
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                //    return <Button title="Tap Me" onPress={headerButonPressHandler}/>
-                return <IconButton icon="star" color='white' onPress={headerButonPressHandler} />
+                //    return <Button title="Tap Me" onPress={changeFavHandler}/>
+                return <IconButton
+                    icon={isSelectedMealFav ? 'star' : 'star-outline'}
+                    color='white'
+                    onPress={changeFavHandler}
+                />
             }
         })
-    }, [navigation, headerButonPressHandler])
-    function headerButonPressHandler() {
-        console.log('pressed')
-    }
+    }, [navigation, changeFavHandler])
 
-    console.log(mealData)
     return <>
         <View>
             {/* <Text style={styles.title}>Meal Data Screen for id - {mealId}</Text> */}

@@ -7,7 +7,7 @@ import {
     StyleSheet,
     Platform,
 } from 'react-native';
-import MealDetails from './MealDetails';
+import MealDetails from '../MealDetails';
 
 
 
@@ -26,7 +26,7 @@ function MealItem({id, title, imageUrl, duration, complexity, affordability }) {
                 <View style={styles.innerContainer}>
                     <View>
                         {/* <Image source={{uri: imageUrl}} style={styles.image} /> */}
-                        <Image source={require('../assets/images/success.png')} style={styles.image} />
+                        <Image source={require('../../assets/images/success.png')} style={styles.image} />
                         <Text style={styles.title}>{title}</Text>
                     </View>
                     
